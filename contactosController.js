@@ -1,7 +1,7 @@
 //DATOS DE CONTACTO
 let data = require("./contactosModel");
 
-function getAllContacts(req, res){
+function getAllContacts(req, res) {
   res.status(200).json(data);
 }
 function getOneContact(req, res) {
@@ -17,47 +17,47 @@ function getOneContact(req, res) {
 }
 
 function addContact(req, res) {
-     
+
   let itemIds = data.map(item => item.id);
   let nuevoId = itemIds.length > 0 ? Math.max.apply(Math, itemIds) + 1 : 1;
 
-    let nuevoContacto = {
-        id: nuevoId,
-        nombre: req.body.nombre,
-        apellido: req.body.apellido,
-        telefono: req.body.telefono,
-        idsector: req.body.idsector
-    }
-  
-    data.push(nuevoContacto);
+  let nuevoContacto = {
+    id: nuevoId,
+    nombre: req.body.nombre,
+    apellido: req.body.apellido,
+    telefono: req.body.telefono,
+    idsector: req.body.idsector
+  }
 
-    res.status(201).json(nuevoContacto);
+  data.push(nuevoContacto);
+
+  res.status(201).json(nuevoContacto);
 }
 
 function modifyContact(req, res) {
-  
+
   let producto = data.find(function (item) {
     return item.id === parseInt(req.params.id);
   });
 
-  if(producto){
-   
+  if (producto) {
+
     let modificarContacto = {
-        id: req.params.id, //req.body.id,
-        nombre: req.body.nombre,
-        apellido: req.body.apellido,
-        telefono: req.body.telefono,
-        idsector: req.body.idsector
+      id: req.params.id, //req.body.id,
+      nombre: req.body.nombre,
+      apellido: req.body.apellido,
+      telefono: req.body.telefono,
+      idsector: req.body.idsector
     }
-  
+
     let encontrado = data.indexOf(producto)
 
-    data.splice(encontrado, 1, modificarContacto )
+    data.splice(encontrado, 1, modificarContacto)
 
     res.status(200).json("producto modificado");
 
-  }else{
-      res.status(404).json("No existe producto");
+  } else {
+    res.status(404).json("No existe producto");
   }
 
 }
@@ -67,26 +67,26 @@ function deleteContact(req, res) {
     return item.id === parseInt(req.params.id);
   });
 
-  if(producto){
-   
+  if (producto) {
+
     let encontrado = data.indexOf(producto)
 
-    data.splice(encontrado, 1 )
+    data.splice(encontrado, 1)
 
     res.status(200).json("producto Eliminado");
 
-  }else{
-      res.status(404).json("No existe producto");
+  } else {
+    res.status(404).json("No existe producto");
   }
 }
 
 module.exports = {
-    getAllContacts,
-    getOneContact,
-    modifyContact,
-    addContact,
-    deleteContact   
-  }
+  getAllContacts,
+  getOneContact,
+  modifyContact,
+  addContact,
+  deleteContact
+}
 
 
 
