@@ -1,27 +1,22 @@
+// based on https://github.com/adriancanog/api-crud-mysql.git
+
+
 // INIT EXPRESS
-const xp = require("express");
-const app = xp.express();
+const express = require("express");
+const app = express();
 // INIT BODY-PARSER
 const bodyParser = require("body-parser");
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 // SET ROUTES
-const routes = require("contactosRoutes");
+const routes = require("./contactosRoutes");
 app.use("/contactos", routes);
-// MYSQL CONNECTION
-const mysql = require("mysql")
-var conn = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "ads"
-})
-conn.connect(function(err) {
-    if (err) { throw err }
-    console.log("DB connected")
-})
+//MODEL - conectar con datos
+var sql = require('./contactosModel')
+sql.connect();
 
 
-app.use(3000, function() {
-    console.log('Server up');
+const serverport = 3000
+app.listen(serverport, function() {
+    console.log('Server is up on port '+ serverport);
 })

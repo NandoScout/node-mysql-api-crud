@@ -4,10 +4,10 @@ const router = express.Router();
 const contactosController = require('./contactosController');
 
 // app.use("/contactoss",router);
-router.get("/", contactosController.getAllProducts );
-router.get("/:id", contactosController.getOneProduct );
-router.post("/nuevo", contactosController.addProduct );
-router.put("/modificar/:id", contactosController.modifyProduct );
-router.delete("/eliminar/:id", contactosController.deleteProduct );
+router.get("/", contactosController.getAllContacts );
+router.get("/:id", contactosController.getOneContact );
+router.post("/nuevo", contactosController.addContact );
+router.put("/modificar/:id", contactosController.modifyContact );
+router.delete("/eliminar/:id", contactosController.deleteContact );
  
 module.exports = router;
