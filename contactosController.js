@@ -23,9 +23,9 @@ function getOneContact(req, res) {
         if (error) throw error;
 
         if (results.length == 0) {
-          res.json("no hay contacto");
+          res.status(404).json("contacto inexistente:"+req.params.id);
         } else {
-          res.json(results);
+          res.json(results[0]);
         }
       }
     );
@@ -48,8 +48,17 @@ function addContact(req, res) {
     console.log(params);
   
     sql.conn.query('INSERT INTO `empleado` SET ?', params, function (error, results, fields) {
-      if (error) throw error;
-      res.status(201).json(results);
+      //if (error) throw error;
+      console.log(error)
+      if (error)
+        res.status(404).json("contacto no insertado ("+error.sqlMessage+")")
+      else
+      if (results.affectedRows > 0) {
+        res.status(201).json("contacto insertado:"+results.insertId)
+      } else {
+        res.status(404).json("contacto no insertado "+results.message)
+      }
+      //res.status(201).json(results);
     });
   })
 
@@ -80,7 +89,12 @@ function modifyContact(req, res) {
     // sql.conn.query(q, [req.body.nombre, req.body.apellido, req.body.idsector, req.body.telefono, req.params.id], function (error, results, fields) {})
     sql.conn.query(q, params, function (error, results, fields) {
       if (error) throw error;
-      res.json(results); 
+      if (results.affectedRows > 0) {
+        res.json(results.changedRow + " registro/s actualizado/s")
+      } else {
+        res.status(404).json("contacto inexistente:"+req.params.id)
+      }
+      //res.json(results); 
     })
   })
   /*let producto = data.find(function (item) {
@@ -117,7 +131,12 @@ function deleteContact(req, res) {
       function (error, results, fields) {
         if (error) throw error;
   
-        res.json(results);
+        if (results.affectedRows > 0) {
+          res.json(results.changedRow + " registro/s actualizado/s")
+        } else {
+          res.status(404).json("contacto inexistente:"+req.params.id)
+        }
+        //res.json(results);
       }
     );
   })
