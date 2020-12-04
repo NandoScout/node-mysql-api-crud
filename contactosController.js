@@ -15,7 +15,7 @@ function getAllContacts(req, res) {
 function getOneContact(req, res) {
   sql.conn.connect(function RO() {
     // let q = "SELECT * FROM empleado WHERE id=?"
-    let q = "SELECT e.`id`, e.`nombre`, e.`apellido`, e.`idsector`, s.`nombre` sector, e.`telefono` FROM `empleado` e INNER JOIN `sector` s ON (s.`id` = e.`idsector`)  WHERE e.id=?"
+    let q = "SELECT e.`id`, e.`nombre`, e.`apellido`, e.`idsector`, s.`nombre` sector, e.`telefono` FROM `empleado` e LEFT JOIN `sector` s ON (s.`id` = e.`idsector`)  WHERE e.id=?"
     sql.conn.query(
       q,
       [req.params.id],
