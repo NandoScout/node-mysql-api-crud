@@ -29,6 +29,21 @@ Mediante `Express.Router()` se configuraron múltiples entry points para la mism
 - [ ] PUT no debe aceptar objetos parciales (exigir objetos completos)
 - [ ] Emplear metodos de datos desde contactosModel (migrar métodos)
 
+## Base de Datos
+El servicio fue montado sobre XAMPP con MySql / MariaDB 10.4.13
+- Backup disponible en [carpeta mysql_backup](/mysql_backup)
+
+## Probar API con Postman
+Se brinda un backup de la colección de Postman para probar todos los entries de la API REST.
+- Backup disponible en [carpeta postman_backup](/postman_backup)
+
+La colección posee 3 variables que pueden configurarse según la configuración. Valores por defecto:
+```
+url: fbroqua.sytes.net
+port: 3000
+entry: contactos
+```
+
 ## Observaciones
 - El servidor está alojado en un equipo móvil (notebook), no siempre accesible, no siempre corriendo :+1:
 - Método `POST` inserta objetos y devuelve url al objeto como Location del Header
