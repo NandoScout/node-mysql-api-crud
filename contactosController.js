@@ -1,6 +1,21 @@
 //DATOS DE CONTACTO
 let sql = require("./contactosModel");
 
+function getUrl(req) {
+  return req.protocol + '://' + req.get('host') + req.originalUrl;
+}
+function getBaseUrl(req) {
+  return req.protocol + '://' + req.get('host') + req.baseUrl;
+}
+
+function getIdUrl(req, id) {
+  let url = getBaseUrl(req);
+  if (url.substr(url.length,1) != "/")
+    url += "/";
+  url = url + id;
+  return url;
+}
+
 function getAllContacts(req, res) {
   sql.conn.connect(function RA(){
     // let q = "SELECT * FROM `empleado`"
@@ -23,7 +38,7 @@ function getOneContact(req, res) {
         if (error) throw error;
 
         if (results.length == 0) {
-          res.status(404).json("contacto inexistente:"+req.params.id);
+          res.status(404).json("registro inexistente:"+req.params.id);
         } else {
           res.json(results[0]);
         }
@@ -51,12 +66,13 @@ function addContact(req, res) {
       //if (error) throw error;
       console.log(error)
       if (error)
-        res.status(404).json("contacto no insertado ("+error.sqlMessage+")")
+        res.status(404).json("registro no insertado ("+error.sqlMessage+")")
       else
       if (results.affectedRows > 0) {
-        res.status(201).json("contacto insertado:"+results.insertId)
+        // status + resource location + output
+        res.status(201).location(getIdUrl(req,results.insertId)).json("registro insertado:"+results.insertId)
       } else {
-        res.status(404).json("contacto no insertado "+results.message)
+        res.status(404).json("registro no insertado "+results.message)
       }
       //res.status(201).json(results);
     });
@@ -90,9 +106,9 @@ function modifyContact(req, res) {
     sql.conn.query(q, params, function (error, results, fields) {
       if (error) throw error;
       if (results.affectedRows > 0) {
-        res.json(results.changedRow + " registro/s actualizado/s")
+        res.status(204).json(results.changedRow + " registro/s actualizado/s") //204 : No content
       } else {
-        res.status(404).json("contacto inexistente:"+req.params.id)
+        res.status(404).json("registro inexistente:"+req.params.id)
       }
       //res.json(results); 
     })
@@ -132,9 +148,9 @@ function deleteContact(req, res) {
         if (error) throw error;
   
         if (results.affectedRows > 0) {
-          res.json(results.changedRow + " registro/s actualizado/s")
+          res.json(results.affectedRows + " registro/s eliminado/s")
         } else {
-          res.status(404).json("contacto inexistente:"+req.params.id)
+          res.status(404).json("registro inexistente:"+req.params.id)
         }
         //res.json(results);
       }

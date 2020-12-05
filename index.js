@@ -10,7 +10,7 @@ app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 // SET ROUTES
 const routes = require("./contactosRoutes");
-app.use("/contactos", routes);
+app.use(["/contactos","/contacts","/employees"], routes); // accesible from multiple entries
 //MODEL - conectar con datos
 var sql = require('./contactosModel')
 sql.connect();
