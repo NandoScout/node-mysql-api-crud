@@ -32,5 +32,5 @@ Mediante `Express.Router()` se configuraron múltiples entry points para la mism
 - El servidor está alojado en un equipo móvil (notebook), no siempre accesible, no siempre corriendo :+1:
 - Método `POST` inserta objetos y devuelve url al objeto como Location del Header
 - Método `PUT` no inserta objetos, a partir que el ID es autogenerado
-- ~►Métodos `PUT/PATCH` no devuelve contenido (`status 204`) a modo de prueba~~
+- ~~Métodos `PUT/PATCH` no devuelve contenido (`status 204`) a modo de prueba~~
 
