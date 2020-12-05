@@ -26,7 +26,8 @@ Mediante `Express.Router()` se configuraron múltiples entry points para la mism
 - Eliminar un recurso:	DELETE http://fbroqua.sytes.net/contacts/eliminar/11
 
 ## Cambios pendientes
-- [ ] Método PUT acepta objetos parciales, no exige objetos completos
+- [ ] PUT no debe aceptar objetos parciales (exigir objetos completos)
+- [ ] Emplear metodos de datos desde contactosModel (migrar métodos)
 
 ## Observaciones
 - El servidor está alojado en un equipo móvil (notebook), no siempre accesible, no siempre corriendo :+1:
