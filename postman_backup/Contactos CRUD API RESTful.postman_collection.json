@@ -1,0 +1,223 @@
+{
+	"info": {
+		"_postman_id": "b5caaa88-fd89-4b5b-8830-5e91436ff3cb",
+		"name": "Contactos CRUD API RESTful",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "RESTful R All",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://{{url}}:{{port}}/{{entry}}/",
+					"protocol": "http",
+					"host": [
+						"{{url}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"{{entry}}",
+						""
+					]
+				},
+				"description": "Read all contacts / employees"
+			},
+			"response": []
+		},
+		{
+			"name": "RESTful R One",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://{{url}}:{{port}}/{{entry}}/14",
+					"protocol": "http",
+					"host": [
+						"{{url}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"{{entry}}",
+						"14"
+					]
+				},
+				"description": "Read one contact / employee"
+			},
+			"response": []
+		},
+		{
+			"name": "RESTful C",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Fernando\",\r\n    \"apellido\": \"Creado\",\r\n    \"idsector\": 2,\r\n    \"telefono\": \"666-1199\"\r\n}"
+				},
+				"url": {
+					"raw": "http://{{url}}:{{port}}/{{entry}}/",
+					"protocol": "http",
+					"host": [
+						"{{url}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"{{entry}}",
+						""
+					]
+				},
+				"description": "Create one contact / employee"
+			},
+			"response": []
+		},
+		{
+			"name": "RESTful U",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Fernando\",\r\n    \"apellido\": \"Modificado\",\r\n    \"idsector\": 1,\r\n    \"telefono\": \"777-2299\"\r\n}"
+				},
+				"url": {
+					"raw": "http://{{url}}:{{port}}/{{entry}}/14",
+					"protocol": "http",
+					"host": [
+						"{{url}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"{{entry}}",
+						"14"
+					]
+				},
+				"description": "Update one contact / employee"
+			},
+			"response": []
+		},
+		{
+			"name": "RESTful U Patch",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"apellido\": \"Emparchado\"\r\n}"
+				},
+				"url": {
+					"raw": "http://{{url}}:{{port}}/{{entry}}/14",
+					"protocol": "http",
+					"host": [
+						"{{url}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"{{entry}}",
+						"14"
+					]
+				},
+				"description": "Update one contact / employee"
+			},
+			"response": []
+		},
+		{
+			"name": "RESTful D",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://{{url}}:{{port}}/{{entry}}/15",
+					"protocol": "http",
+					"host": [
+						"{{url}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"{{entry}}",
+						"15"
+					]
+				},
+				"description": "Delete one contact / employee"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "1516580c-985f-43d6-b251-7944877221d7",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "5a30f09d-d3ed-4fa5-95e0-0192e748ae69",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "60008f29-7974-450e-92ea-22a1c88e9abd",
+			"key": "url",
+			"value": "fbroqua.sytes.net"
+		},
+		{
+			"id": "7ba8f928-c2fb-4e2e-9d88-b42e88ce3f01",
+			"key": "port",
+			"value": "3000"
+		},
+		{
+			"id": "f3d5725c-3b11-464a-96d8-8caf91da1344",
+			"key": "entry",
+			"value": "contactos"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
