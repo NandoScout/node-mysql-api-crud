@@ -106,7 +106,8 @@ function modifyContact(req, res) {
     sql.conn.query(q, params, function (error, results, fields) {
       if (error) throw error;
       if (results.affectedRows > 0) {
-        res.status(204).json(results.changedRow + " registro/s actualizado/s") //204 : No content
+        // res.status(204) // 204 : No content
+        res.status(200).json(results.changedRow + " registro/s actualizado/s") 
       } else {
         res.status(404).json("registro inexistente:"+req.params.id)
       }
